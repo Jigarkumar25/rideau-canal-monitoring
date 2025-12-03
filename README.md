@@ -46,8 +46,14 @@ The system monitors ice thickness, temperature, and snow accumulation to help de
 
 ### Architecture Diagram   
 
-![Rideau Canal IoT Architecture](architecture/architecture.png)
-
+```mermaid
+flowchart LR
+    Sensor[Sensor simulator] --> IoTHub[Azure IoT Hub]
+    IoTHub --> SA[Azure Stream Analytics job]
+    SA --> Cosmos[Azure Cosmos DB]
+    SA --> Blob[Azure Blob Storage]
+    Cosmos --> Dashboard[Web dashboard]
+```
 
 ### Data Flow Explanation  
 1. Sensor simulator sends telemetry to Azure IoT Hub  
